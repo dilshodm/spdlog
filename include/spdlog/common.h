@@ -121,27 +121,23 @@ using string_view_t = std::string_view;
 using memory_buf_t = std::string;
 using wstring_view_t = std::wstring_view;
 using wmemory_buf_t = std::wstring;
-
 template<typename... Args>
 #    if __cpp_lib_format >= 202207L
 using format_string_t = std::format_string<Args...>;
 #    else
 using format_string_t = std::string_view;
 #    endif
-
 #    define SPDLOG_BUF_TO_STRING(x) x
 #else // use fmt lib instead of std::format
 namespace fmt_lib = fmt;
-
 using string_view_t = fmt::basic_string_view<char>;
 using memory_buf_t = fmt::basic_memory_buffer<char, 250>;
-template<typename... Args>
-using format_string_t = fmt::format_string<Args...>;
 using wstring_view_t = fmt::basic_string_view<wchar_t>;
 using wmemory_buf_t = fmt::basic_memory_buffer<wchar_t, 250>;
+template<typename... Args>
+using format_string_t = fmt::format_string<Args...>;
 #    define SPDLOG_BUF_TO_STRING(x) fmt::to_string(x)
-#endif // SPDLOG_USE_STD_FORMAT
-
+#endif //  SPDLOG_USE_STD_FORMAT
 
 #define SPDLOG_LEVEL_TRACE 0
 #define SPDLOG_LEVEL_DEBUG 1
