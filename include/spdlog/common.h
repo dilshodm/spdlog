@@ -151,10 +151,6 @@ using format_string_t = fmt::format_string<Args...>;
 #    define SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_INFO
 #endif
 
-// Is convertable to string_view_t ?
-template<typename T>
-using is_convertible_to_sv = std::enable_if_t<std::is_convertible_v<T, string_view_t>>;
-
 // Log level enum
 enum class log_level
 {
@@ -276,6 +272,10 @@ struct source_loc
     std::uint_least32_t line{0};
     const char *funcname{nullptr};
 };
+
+// Is convertable to string_view_t ?
+template<typename T>
+using is_convertible_to_sv = std::enable_if_t<std::is_convertible_v<T, string_view_t>>;
 
 // trick to capture format string and caller's source location with variadic template.
 // see logger::info() etc. to understand how it's used.
