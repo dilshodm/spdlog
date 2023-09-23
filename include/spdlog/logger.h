@@ -267,7 +267,7 @@ public:
 #endif
 
     // return true if logging is enabled for the given level.
-    [[nodiscard]] bool should_log(log_level msg_level) const
+    [[nodiscard]] bool should_log(log_level msg_level) const noexcept
     {
         return msg_level >= level_.load(std::memory_order_relaxed);
     }
