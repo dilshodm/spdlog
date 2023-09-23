@@ -197,7 +197,7 @@ public:
     {
         log(loc, log_level::critical, msg);
     }
-#else
+#else // without source location
     template<typename... Args>
     void trace(format_string_t<Args...> fmt, Args &&...args)
     {
